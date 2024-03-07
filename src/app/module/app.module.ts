@@ -4,6 +4,7 @@ import { AppService } from '../service/app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { ClipsModule } from '../../clips/clips.module';
+import { AuthModule } from 'src/auth/module/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ClipsModule } from '../../clips/clips.module';
       autoIndex: true,
     }),
     ClipsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

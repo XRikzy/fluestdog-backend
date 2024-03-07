@@ -1,11 +1,28 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Users, UsersDocument } from 'src/users/schema/users.schema';
-
+import { HttpException, Injectable } from '@nestjs/common';
+import { compare } from 'bcrypt';
+import { LoginAuthDto } from '../dto/login-auth.dto';
+import { UsersService } from 'src/users/services/users.service';
+import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(Users.name) private readonly userModel: Model<UsersDocument>,
+    private userService: UsersService,
+    private jwtService: JwtService,
   ) {}
+  async register(userRegister: any): Promise<any> {
+    return this.userService.create(userRegister);
+  }
+  async login(userDto: LoginAuthDto): Promise<any> {
+    const { username, password } = userDto;
+    const user = await this.userService.findOne(username);
+    if (!user) throw new HttpException('USER NO FOUND', 404);
+    const checkPassword = await compare(password, user.password);
+    if (!checkPassword) throw new HttpException('INCORRECT PASSWORD', 403);
+    const payload = { sub: user._id, username: user.username };
+    return {
+      username: user.username,
+      _id: user._id,
+      accessToken: await this.jwtService.signAsync(payload),
+    };
+  }
 }
