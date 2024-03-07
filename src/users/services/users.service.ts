@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { IUser } from '../interface/users.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RegisterAuthDto } from 'src/auth/dto/register-auth.dto';
 import { hash } from 'bcrypt';
+import { RegisterAuthDto } from '../../auth/dto/register-auth.dto';
 
 @Injectable()
 export class UsersService {

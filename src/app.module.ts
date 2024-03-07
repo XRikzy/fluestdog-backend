@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from '../controller/app.controller';
-import { AppService } from '../service/app.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from 'src/auth/module/auth.module';
-import { ClipsModule } from 'src/clips/clips.module';
+import { ClipsModule } from './clips/clips.module';
+import { AuthModule } from './auth/module/auth.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
