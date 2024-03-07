@@ -3,9 +3,8 @@ import { AppController } from '../controller/app.controller';
 import { AppService } from '../service/app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
-import { ClipsModule } from '../../clips/clips.module';
 import { AuthModule } from 'src/auth/module/auth.module';
-
+import { ClipsModule } from 'src/clips/clips.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
