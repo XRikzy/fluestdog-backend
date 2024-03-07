@@ -9,10 +9,10 @@ import { AuthModule } from 'src/auth/module/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.DB_URI, {
+    MongooseModule.forRoot('mongodb+srv://apirestrb.gzrimjk.mongodb.net/', {
       auth: {
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
+        username: 'ricardobarrett',
+        password: 'adminricardo123',
       },
       autoIndex: true,
     }),
