@@ -6,6 +6,7 @@ export class CreateClipDto {
   readonly title: string;
   @IsString()
   readonly description: string;
-  @IsArray({ message: 'Agrege un tag a el video por favor' })
+  @IsArray()
+  @IsNotEmpty({ message: 'Agrege un tag a el video por favor' })
   readonly tags: string;
 }
