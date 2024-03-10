@@ -71,7 +71,7 @@ export class ClipsController {
   remove(@Param('id') _id: string, @Res() res) {
     try {
       const clips = this.clipsService.remove(_id)
-      res.status(200).json(clips)
+      res.status(200).json({ message: 'Clip eliminado correctamente!', clips })
       return
     } catch (error: any) {
       res.status(error.status).json(error.response)
